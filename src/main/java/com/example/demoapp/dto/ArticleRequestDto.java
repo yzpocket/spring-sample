@@ -1,5 +1,7 @@
 package com.example.demoapp.dto;
 
+import com.example.demoapp.entity.Article;
+
 public class ArticleRequestDto {
     private String title;
     private String contents;
@@ -15,5 +17,9 @@ public class ArticleRequestDto {
                 "title='"+title+'\'' +
                 ", contents='"+contents+'\''+
                 '}';
+    }
+
+    public Article toEntity() {
+        return new Article(null,title,contents);
     }
 }
