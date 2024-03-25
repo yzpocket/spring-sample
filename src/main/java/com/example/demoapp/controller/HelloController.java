@@ -24,14 +24,15 @@ public class HelloController {
         return "hello-template";
     }
 
+    // @ResponseBody어노테이션을 보고 부트는 HttpMessageConverter중에서 고름 그중 문자or객체로 구분
     @GetMapping("hello-string")
-    @ResponseBody
+    @ResponseBody // 문자가 받아져서 StringConverter가 동작해서 문자 데이터 반환
     public String helloString(@RequestParam("name") String name){
         return "hello" + name;
     }
 
     @GetMapping("hello-api")
-    @ResponseBody
+    @ResponseBody // 객체가 받아져서 JsonConverter가 동작하여 Json 형식 데이터 반환
     public Hello helloApi(@RequestParam("name") String name){
         Hello hello = new Hello();
         hello.setName(name);
