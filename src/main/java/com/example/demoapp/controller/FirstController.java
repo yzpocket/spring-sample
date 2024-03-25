@@ -14,7 +14,7 @@ public class FirstController {
 
     @GetMapping("/")
     public String index(Model model){
-        model.addAttribute("username", "Hello World!");
+        model.addAttribute("username", "User1123");
         return "index";
     }
 
