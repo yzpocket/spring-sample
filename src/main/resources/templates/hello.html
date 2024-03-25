@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1> This is Mustache Page </h1>
-<h2> Welcome, {{username}}</h2>
+<h1> This is Thymeleaf Page </h1>
+<h2 th:text="'Welcome ' +${data}"> Hi</h2>
 </body>
 </html>
