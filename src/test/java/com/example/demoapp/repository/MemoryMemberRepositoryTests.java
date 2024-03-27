@@ -1,6 +1,7 @@
 package com.example.demoapp.repository;
 
 import com.example.demoapp.domain.Member;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,16 +10,26 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MemoryMemberRepositoryTests {
-    MemberRepository memberRepository = new MemoryMemberRepository();
+    MemoryMemberRepository memoryMemberRepository = new MemoryMemberRepository();
+
+
+    @AfterEach
+    public void afterEach(){
+        memoryMemberRepository.clearStore();
+    }
 
     @Test
     public void save(){
+        //given
         Member member = new Member();
         member.setName("spring");
 
-        memberRepository.save(member);
+        memoryMemberRepository.save(member);
 
-        Member result = memberRepository.findById(member.getId()).get();
+        //when
+        Member result = memoryMemberRepository.findById(member.getId()).get();
+
+        //then
         //System.out.println("result = " + (result == member));
         //Assertions.assertEquals(member, null);
         assertThat(member).isEqualTo(result);
@@ -30,17 +41,17 @@ public class MemoryMemberRepositoryTests {
         //given
         Member member1 = new Member();
         member1.setName("spring1");
-        memberRepository.save(member1);
+        memoryMemberRepository.save(member1);
 
         Member member2= new Member();
         member2.setName("spring2");
-        memberRepository.save(member2);
+        memoryMemberRepository.save(member2);
 
         //when
-        Member result1 = memberRepository.findByName("spring1").get();
-        Member result2 = memberRepository.findByName("spring2").get();
+        Member result = memoryMemberRepository.findByName("spring1").get();
+
         //then
-        assertThat(result2).isEqualTo(member1);
+        assertThat(result).isEqualTo(member1);
     }
 
     @Test
@@ -48,14 +59,16 @@ public class MemoryMemberRepositoryTests {
         //given
         Member member1 = new Member();
         member1.setName("spring1");
-        memberRepository.save(member1);
+        memoryMemberRepository.save(member1);
 
         Member member2= new Member();
         member2.setName("spring2");
-        memberRepository.save(member2);
+        memoryMemberRepository.save(member2);
 
-        List<Member> result = memberRepository.findAll();
+        //when
+        List<Member> result = memoryMemberRepository.findAll();
 
+        //then
         assertThat(result.size()).isEqualTo(2);
     }
 
