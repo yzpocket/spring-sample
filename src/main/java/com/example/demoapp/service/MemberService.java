@@ -2,7 +2,7 @@ package com.example.demoapp.service;
 
 import com.example.demoapp.domain.Member;
 import com.example.demoapp.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,14 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class MemberService {
 
     private final MemberRepository memberRepository;
-
-    @Autowired
-    public MemberService(MemberRepository memberRepository)  {
-        this.memberRepository = memberRepository;
-    }
 
     /**
      * 회원 가입
