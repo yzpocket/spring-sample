@@ -44,27 +44,8 @@ class MemberServiceIntergrationTest {
         //when
         memberService.join(member1);
 
-        //then
-        //try {
-        //    memberService.join(member2);
-        //    fail();
-        //} catch(IllegalStateException e){
-        //    assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
-        //    //assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.1");
-        //}
-
-        //assertThrows(IllegalStateException.class, () -> memberService.join(member2));
-
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
 
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
-    }
-
-    @Test
-    void 회원목록조회() {
-    }
-
-    @Test
-    void 특정회원조회() {
     }
 }
