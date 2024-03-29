@@ -4,6 +4,7 @@ import com.example.demoapp.domain.Member;
 import com.example.demoapp.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,7 @@ public class MemberService {
     /**
      * 회원 가입
      */
+    @Transactional
     public Long join(Member member) {
         //같은 이름 제외하는 경우
         validateDuplicateMemberName(member);
